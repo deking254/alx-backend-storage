@@ -1,5 +1,6 @@
 -- adding a score to a project using procedures
 DELIMITER //
+DROP PROCEDURE IF EXISTS AddBonus;
 CREATE PROCEDURE AddBonus(user_id INT, project_name TEXT, score INT)
 BEGIN
     DECLARE project_id INT;

@@ -1,5 +1,6 @@
 -- a procedure to calucate the average score of the specified user
 DELIMITER //
+DROP PROCEDURE IF EXISTS ComputeAverageScoreForUser;
 CREATE PROCEDURE ComputeAverageScoreForUser(user_id INT)
 BEGIN
 	DECLARE avg_score INT;

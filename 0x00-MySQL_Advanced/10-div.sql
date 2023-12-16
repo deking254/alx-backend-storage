@@ -1,6 +1,6 @@
 -- creates a function that returns the division of two ints
 DELIMITER //
-DROP FUNCTION SafeDiv;
+DROP FUNCTION IF EXISTS SafeDiv;
 CREATE FUNCTION SafeDiv(a INT, b INT) RETURNS FLOAT DETERMINISTIC
 BEGIN
 	DECLARE result FLOAT;
