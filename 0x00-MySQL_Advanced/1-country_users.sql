@@ -1,4 +1,4 @@
 -- creates a user table and database if they dont exist
 CREATE DATABASE IF NOT EXISTS holberton;
-create table if not exists holberton.users(id int not null primary key auto_increment, 
-email varchar(255) unique not null, name varchar(255), country enum('US', 'CO', 'IN') default 'US' not null);
+CREATE TABLE IF NOT EXISTS holberton.users(id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+email VARCHAR(255) UNIQUE NOT NULL, name VARCHAR(255), country ENUM('US', 'CO', 'IN') DEFAULT 'US' NOT NULL);

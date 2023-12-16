@@ -1,2 +1,2 @@
 -- create a trigger that reduces the number in the items table when a new order is inserted
-create trigger new_order after insert on orders for each row update items set quantity = quantity - NEW.number where name = NEW.item_name;
+CREATE TRIGGER new_order AFTER INSERT ON orders FOR EACH ROW UPDATE items SET quantity = quantity - NEW.number WHERE name = NEW.item_name;

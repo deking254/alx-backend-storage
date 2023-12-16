@@ -1,2 +1,2 @@
 -- returns the longevity of bands with glam_rock as a style
-select metal_bands.band_name, (if(split is null, 2020, split)-formed) as lifespan from metal_bands where style like '%Glam rock%' order by lifespan desc;
+SELECT metal_bands.band_name, (IF(split IS NULL, 2020, split)-formed) AS lifespan FROM metal_bands WHERE style LIKE '%Glam rock%' ORDER BY lifespan DESC;
