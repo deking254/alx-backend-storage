@@ -3,8 +3,8 @@
 from pymongo import MongoClient
 client = MongoClient('mongodb://127.0.0.1:27017')
 collections = client.logs.get_collection('nginx')
-print('{} logs\nMethods:\n\tmethod GET: {}\n\tmethod POST: {}\n\t\
-method PUT: {}\n\tmethod PATCH: {}\n\tmethod DELETE: {}\n\
+print('{} logs\nMethods:\n    method GET: {}\n    method POST: {}\n\t\
+method PUT: {}\n    method PATCH: {}\n    method DELETE: {}\n\
 {} status check'.format(collections.count_documents({}),
                         collections.count_documents({'method': 'GET'}),
                         collections.count_documents({'method': 'POST'}),
