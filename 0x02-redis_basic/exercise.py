@@ -2,9 +2,9 @@
 """solves a question about redis"""
 import redis
 import uuid
+from tying import Callable
 
-
-def count_calls(method: callable) -> callable:
+def count_calls(method: Callable) -> Callable:
     """a decorator for class cache that returns callable to use"""
     red = method._redis
 
@@ -16,7 +16,7 @@ def count_calls(method: callable) -> callable:
     return incrementor
 
 
-def call_history(method: callable) -> callable:
+def call_history(method: Callable) -> Callable:
     """a decorator for cache for storing input and output"""
 
     def initialize_history():
