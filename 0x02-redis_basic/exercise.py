@@ -21,8 +21,8 @@ def call_history(method: callable) -> callable:
 
     def initialize_history():
         """this function initializes the lists"""
-        method()._redis.set(method().store.__qualname__ + ":inputs", [])
-        method()._redis.set(method().store.__qualname__ + ":outputs", [])
+        method()._redis.set(method().store.__qualname__ + ":inputs", '')
+        method()._redis.set(method().store.__qualname__ + ":outputs", '')
         return method()
     return initialize_history
 
