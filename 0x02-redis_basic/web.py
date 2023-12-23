@@ -6,19 +6,20 @@ import time
 import os
 from typing import DefaultDict
 counter_dict = DefaultDict(int)
-
-
 cache = redis.Redis()
+
+
+
 def get_page(url: str) -> str:
     """returns the content off the url"""
     try:
-        page = 'requests.get(url)'
-        key = 'count:{' + url + '}'
+        page = requests.get(url)
+        key = 'count:' + url
         counter_dict[key] += 1
         times = counter_dict[key]
         cache.set(key, times)
-        time.sleep(10)
-        cache.flushdb()
+        start_time = time.time()
+        cache.expireat(key, int(start_time) + 10)
         return page
-    except Exception:
+    except Exception as e:
         pass
