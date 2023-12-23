@@ -9,17 +9,22 @@ counter_dict = DefaultDict(int)
 cache = redis.Redis()
 
 
-
+def counter(self):
+    """does the adding of the url counter"""
+    def increment(url):
+        """adds to the url count"""
+        key = 'count:{' + url + '}'
+        start_time = time.time()
+        cache.incr(key)
+        cache.expireat(key, int(start_time) + 10)
+        return self(url)
+    return increment
+        
+@counter
 def get_page(url: str) -> str:
     """returns the content off the url"""
     try:
         page = requests.get(url)
-        key = 'count:' + url
-        counter_dict[key] += 1
-        times = counter_dict[key]
-        cache.set(key, times)
-        start_time = time.time()
-        cache.expireat(key, int(start_time) + 10)
         return page
     except Exception as e:
         pass
