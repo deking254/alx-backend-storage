@@ -13,7 +13,7 @@ def counter(self):
     """does the adding of the url counter"""
     def increment(url):
         """adds to the url count"""
-        key = 'count:{' + url + '}'
+        key = 'count:' + url
         start_time = time.time()
         cache.incr(key)
         cache.expireat(key, int(start_time) + 10)
