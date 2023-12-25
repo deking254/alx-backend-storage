@@ -45,7 +45,7 @@ class Cache:
         self._redis.rpush(self.store.__qualname__ + ":outputs", uid)
         return uid
 
-    def get(self, key: str, fn: Callable = None):
+    def get(self, key: str, fn: Callable = None) -> str or int or float or bytes:
         """returns the value at the key"""
         count_calls(self)
         self._redis.incr(self.get.__qualname__)
@@ -58,11 +58,11 @@ class Cache:
         except Exception as e:
             return e
 
-    def get_str(self, key: str):
+    def get_str(self, key: str) -> str:
         """returns a string from the server"""
         return self.get(self, key, str)
 
-    def get_int(self, key: int):
+    def get_int(self, key: int) -> int:
         """returns an int from server"""
         return self.get(self, key, int)
 
