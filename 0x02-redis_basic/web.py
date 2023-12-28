@@ -16,11 +16,15 @@ def counter(method: Callable) -> str:
         """adds to the url count"""
         client.incr(f'count:{url}')
         cache_response = client.get(f'{url}')
-        if cache_response == None:
+        if cache_response is None:
             response = method(url)
             client.set(f'{url}', response, ex=10)
+            return response
+        else:
+            return method(url)
     return increment
-        
+
+
 @counter
 def get_page(url: str) -> str:
     """returns the content off the url"""
