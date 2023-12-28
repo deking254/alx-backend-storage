@@ -5,7 +5,6 @@ import redis
 import time
 import os
 from typing import Callable
-cache = redis.Redis()
 
 
 def counter(method: Callable) -> str:
@@ -13,10 +12,14 @@ def counter(method: Callable) -> str:
     def increment(url):
         """adds to the url count"""
         key = 'count:' + url
-        cache.incr(key)
-        count = cache.get(key).decode()
-        cache.set(key, count, ex=10)
-        return method(key)
+        cache = cache.Redis()
+        cache.incr(f'count:{url}')
+        if cache.get(f'{url}'):
+            return cache.get(f'{url}').decode()
+
+        response = method(url)
+        cache.set(f'{url}', response, ex=10)
+        return response
     return increment
         
 @counter
