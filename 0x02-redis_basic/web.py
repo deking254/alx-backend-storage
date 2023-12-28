@@ -5,10 +5,12 @@ import redis
 import time
 import os
 from typing import Callable
+from functools import wraps
 
 
 def counter(method: Callable) -> str:
     """does the adding of the url counter"""
+    @wraps(method)
     def increment(url):
         """adds to the url count"""
         client = redis.Redis()
