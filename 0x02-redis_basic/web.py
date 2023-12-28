@@ -4,20 +4,19 @@ import requests
 import redis
 import time
 import os
-from typing import DefaultDict
-counter_dict = DefaultDict(int)
+from typing import Callable
 cache = redis.Redis()
 
 
-def counter(self):
+def counter(method: Callable) -> str:
     """does the adding of the url counter"""
     def increment(url):
         """adds to the url count"""
         key = 'count:' + url
-        start_time = time.time()
         cache.incr(key)
-        cache.expireat(key, int(start_time) + 10)
-        return self(url)
+        count = cache.get(key).decode()
+        cache.set(key, count, ex=10)
+        return method(key)
     return increment
         
 @counter
@@ -25,6 +24,6 @@ def get_page(url: str) -> str:
     """returns the content off the url"""
     try:
         page = requests.get(url)
-        return page
+        return page.text
     except Exception as e:
         pass

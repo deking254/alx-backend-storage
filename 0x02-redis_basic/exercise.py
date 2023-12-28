@@ -2,7 +2,6 @@
 """solves a question about redis"""
 import redis
 import uuid
-import time
 from typing import Callable, Union
 from functools import wraps
 
@@ -26,13 +25,11 @@ def count_calls(method: Callable) -> Callable:
     @wraps(method)
     def incrementor(self, data) -> Callable:
         """keeps track of the count"""
-        start_time = int(time.time())
         redis_instance = self._redis
         if redis_instance.get(method.__qualname__) is not None:
             redis_instance.incr(method.__qualname__)
         else:
             redis_instance.set(self.store.__qualname__, 1)
-        redis_instance.expireat(self.store.__qualname__, start_time + 10)
         a = method(self, data)
         return a
     return incrementor
