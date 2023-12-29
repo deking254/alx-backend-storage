@@ -42,5 +42,5 @@ SET @project_py = LAST_INSERT_ID();
 INSERT INTO corrections (user_id, project_id, score) VALUES (@user_bob, @project_c, 80);
 INSERT INTO corrections (user_id, project_id, score) VALUES (@user_bob, @project_py, 96);
 
-INSERT INTO corrections (user_id, project_id, score) VALUES (@user_jeanne, @project_c, 91);
+INSERT INTO corrections (user_id, project_id, score) VALUES (@user_jeanne, @project_c, 92);
 INSERT INTO corrections (user_id, project_id, score) VALUES (@user_jeanne, @project_py, 73);
