@@ -1,6 +1,6 @@
 -- calculates the weighted average
 DELIMITER //
-CREATE PROCEDURE IF NOT EXISTS ComputeAverageWeightedScoreForUser(IN user_id INT) MODIFIES SQL DATA
+CREATE PROCEDURE IF NOT EXISTS ComputeAverageWeightedScoreForUseri(IN user_id INT) MODIFIES SQL DATA
 BEGIN
 	DECLARE total_weight INT;
 	DECLARE weighted_average INT;
