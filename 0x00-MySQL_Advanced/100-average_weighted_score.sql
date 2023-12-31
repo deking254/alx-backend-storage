@@ -1,7 +1,7 @@
 -- calculates the weighted average
 DELIMITER //
 DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUser;
-CREATE PROCEDURE IF NOT EXISTS ComputeAverageWeightedScoreForUser (IN user_id INT)
+CREATE PROCEDURE ComputeAverageWeightedScoreForUser (IN user_id INT)
 BEGIN
 	DECLARE total_weight INT;
 	DECLARE weighted_average FLOAT;
